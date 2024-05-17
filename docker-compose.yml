@@ -1,0 +1,26 @@
+services:
+  mongo:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - backend
+
+  nodejs:
+    container_name: api-product
+    build:
+      dockerfile: Dockerfile
+
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:
+
+networks:
+  backend:
