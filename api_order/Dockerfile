@@ -7,13 +7,13 @@ WORKDIR /usr/src/app
 # Installer git
 RUN apt-get update && apt-get install -y git
 
-RUN git clone https://github.com/MSPRPTK/API_Order.git .
+RUN git clone --branch main https://github.com/MSPRPTK/API_Order.git .
 
-# Installer les dépendances du projet
+# # Installer les dépendances du projet
 RUN npm install
 
-# Exposer le port sur lequel votre application va fonctionner
+# # Exposer le port sur lequel votre application va fonctionner
 EXPOSE 3501
 
-# Définir la commande pour démarrer l'application
+# # Définir la commande pour démarrer l'application
 CMD ["npm", "start"]
