@@ -9,11 +9,31 @@ services:
     networks:
       - backend
 
-  nodejs:
+  api-product:
     container_name: api-product
     build:
+      context: ./api_product
       dockerfile: Dockerfile
+    networks:
+      - backend
+    depends_on:
+      - mongo
 
+  api-order:
+    container_name: api-order
+    build:
+      context: ./api_order
+      dockerfile: Dockerfile
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+  api-user:
+    container_name: api-user
+    build:
+      context: ./api_user
+      dockerfile: Dockerfile
     networks:
       - backend
     depends_on:
