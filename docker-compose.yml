@@ -39,6 +39,15 @@ services:
     depends_on:
       - mongo
 
+  rabbitmq:
+    image: rabbitmq:latest
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"  # Port pour AMQP
+      - "15672:15672"  # Port pour la console de gestion
+    networks:
+      - backend
+
 volumes:
   mongo_data:
 
